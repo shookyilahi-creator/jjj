@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Client — Minecraft Clients</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M10 26 L20 12 H44 L54 26 L32 56 Z' fill='%23ffffff' stroke='%239fd8ff' stroke-width='3' stroke-linejoin='round'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== GEM LOGO SPRITE ===== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="gemTop" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffffff"/>
+        <stop offset="1" stop-color="#c3d2e6"/>
+      </linearGradient>
+      <linearGradient id="gemLeft" x1="0" y1="0" x2="0.6" y2="1">
+        <stop offset="0" stop-color="#eaf7ff"/>
+        <stop offset="1" stop-color="#8fb6d9"/>
+      </linearGradient>
+      <linearGradient id="gemRight" x1="1" y1="0" x2="0.4" y2="1">
+        <stop offset="0" stop-color="#dceaf8"/>
+        <stop offset="1" stop-color="#7d97b8"/>
+      </linearGradient>
+      <linearGradient id="gemDeep" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#bfe0fb"/>
+        <stop offset="1" stop-color="#5f80a8"/>
+      </linearGradient>
+      <linearGradient id="gemEdge" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffffff"/>
+        <stop offset="0.5" stop-color="#9fd8ff"/>
+        <stop offset="1" stop-color="#ffffff"/>
+      </linearGradient>
+    </defs>
+    <symbol id="gem" viewBox="0 0 64 64">
+      <polygon points="10,26 20,12 26,26" fill="url(#gemLeft)"/>
+      <polygon points="20,12 44,12 38,26 26,26" fill="url(#gemTop)"/>
+      <polygon points="44,12 54,26 38,26" fill="url(#gemRight)"/>
+      <polygon points="10,26 26,26 32,56" fill="url(#gemDeep)"/>
+      <polygon points="26,26 38,26 32,56" fill="url(#gemLeft)"/>
+      <polygon points="38,26 54,26 32,56" fill="url(#gemRight)"/>
+      <path d="M10 26 L20 12 H44 L54 26 L32 56 Z" fill="none" stroke="url(#gemEdge)" stroke-width="1.8" stroke-linejoin="round"/>
+      <polygon class="gem-spark" points="20,12 44,12 38,26 26,26" fill="#ffffff"/>
+    </symbol>
+  </svg>
+
+  <canvas id="particles"></canvas>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#">
+        <svg class="gem brand-gem" viewBox="0 0 64 64" aria-hidden="true"><use href="#gem"/></svg>
+        <span class="brand-text">Best Client</span>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <a href="#mods">CLIENTS</a>
+        <a href="#" data-setup>SETUP</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="header-cta" href="#mods">Browse Downloads</a>
+      <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="hero-inner reveal">
+        <div class="hero-logo-wrap">
+          <span class="hero-orbit"></span>
+          <span class="hero-glow"></span>
+          <svg class="gem hero-gem" viewBox="0 0 64 64" aria-hidden="true"><use href="#gem"/></svg>
+        </div>
+        <h1 class="hero-brand-text">Best Client</h1>
+        <div class="hero-badge">UPDATED FOR 2026</div>
+        <p class="hero-sub">The ultimate collection of Minecraft clients.
+        Free, verified, and constantly updated — all in one place.</p>
+        <div class="hero-buttons">
+          <a class="btn btn-primary btn-glow" href="#mods">Browse Downloads</a>
+          <a class="btn btn-ghost" href="#" data-setup>Setup Guide</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-num" data-count="0" id="statClients">0</span><span class="stat-label">Clients</span></div>
+          <div class="stat"><span class="stat-num" data-count="0" id="statDownloads">0</span><span class="stat-label">Downloads</span></div>
+          <div class="stat"><span class="stat-num" data-count="24" data-suffix="/7">0</span><span class="stat-label">Updated</span></div>
+        </div>
+      </div>
+      <div class="scroll-hint">⌄</div>
+    </section>
+
+    <!-- ================= CLIENTS ================= -->
+    <section class="section" id="mods">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <span class="section-label">// ARCHIVE</span>
+          <h2>Available <span class="grad-text">Clients</span></h2>
+          <p>Click any card to open its page.</p>
+        </div>
+
+        <div class="toolbar reveal">
+          <div class="search-box">
+            <span class="search-icon" id="searchIcon"></span>
+            <input type="text" id="searchInput" placeholder="Search clients..." autocomplete="off">
+          </div>
+          <div class="filter-chips" id="filterChips">
+            <button class="chip chip-active" data-filter="all">All</button>
+            <button class="chip" data-filter="clients">Clients</button>
+          </div>
+        </div>
+
+        <div class="clients-grid" id="clientsGrid"></div>
+        <div class="empty-state" id="gridEmpty" style="display:none;">No clients match your search.</div>
+
+        <div class="pagination" id="pagination"></div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section" id="faq">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <span class="section-label">// QUESTIONS</span>
+          <h2>Frequently Asked <span class="grad-text">Questions</span></h2>
+        </div>
+        <div class="faq-list" id="faqList"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a class="brand" href="#">
+        <svg class="gem footer-gem" viewBox="0 0 64 64" aria-hidden="true"><use href="#gem"/></svg>
+        <span class="brand-text footer-brand-text">Best Client</span>
+      </a>
+      <nav class="footer-nav">
+        <a href="#mods">CLIENTS</a>
+        <a href="#" data-setup>SETUP</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <p class="disclaimer">Best Client is a third-party client hub. Use at your own risk.
+      Not affiliated with Mojang or Microsoft.</p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
